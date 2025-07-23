@@ -54,6 +54,24 @@
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* DeepMood Brand Colors */
+    --deepblue-50: 220 43% 97%;
+    --deepblue-100: 220 43% 94%;
+    --deepblue-200: 220 42% 87%;
+    --deepblue-300: 220 43% 78%;
+    --deepblue-400: 220 43% 66%;
+    --deepblue-500: 220 43% 54%;
+    --deepblue-600: 220 43% 43%;
+    --deepblue-700: 220 43% 34%;
+    --deepblue-800: 220 43% 27%;
+    --deepblue-900: 220 43% 18%;
+
+    /* Emotion Colors */
+    --emotion-joy: 45 93% 58%;
+    --emotion-calm: 200 43% 54%;
+    --emotion-focus: 260 43% 54%;
+    --emotion-energy: 340 75% 55%;
   }
 
   .dark {
