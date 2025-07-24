@@ -64,10 +64,9 @@ export default function Index() {
 
   const stopTracking = () => {
     // Stop camera stream
-    if (videoRef.current?.srcObject) {
-      const stream = videoRef.current.srcObject as MediaStream;
+    if (stream) {
       stream.getTracks().forEach(track => track.stop());
-      videoRef.current.srcObject = null;
+      setStream(null);
     }
 
     // Clear emotion detection interval
