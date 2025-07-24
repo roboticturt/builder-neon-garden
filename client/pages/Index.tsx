@@ -16,6 +16,7 @@ export default function Index() {
   const [isTracking, setIsTracking] = useState(false);
   const [currentEmotion, setCurrentEmotion] = useState<EmotionPrediction | null>(null);
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const emotions = [
     { name: "Joy", color: "bg-emotion-joy", icon: "😊" },
