@@ -38,34 +38,24 @@ export default function Index() {
 
   const startTracking = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
         video: { width: 640, height: 480 }
       });
 
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
+      setStream(mediaStream);
+      setIsTracking(true);
+      setHasPermission(true);
 
-        // Wait for video to load and start playing
-        videoRef.current.onloadedmetadata = () => {
-          if (videoRef.current) {
-            videoRef.current.play().catch(console.error);
-          }
-        };
-
-        setIsTracking(true);
-        setHasPermission(true);
-
-        // Simulate emotion detection
-        intervalRef.current = setInterval(() => {
-          const randomEmotion = emotions[Math.floor(Math.random() * emotions.length)];
-          const confidence = Math.random() * 0.4 + 0.6; // 60-100% confidence
-          setCurrentEmotion({
-            emotion: randomEmotion.name,
-            confidence,
-            color: randomEmotion.color,
-          });
-        }, 2000);
-      }
+      // Simulate emotion detection
+      intervalRef.current = setInterval(() => {
+        const randomEmotion = emotions[Math.floor(Math.random() * emotions.length)];
+        const confidence = Math.random() * 0.4 + 0.6; // 60-100% confidence
+        setCurrentEmotion({
+          emotion: randomEmotion.name,
+          confidence,
+          color: randomEmotion.color,
+        });
+      }, 2000);
     } catch (error) {
       console.error("Error accessing camera:", error);
       setHasPermission(false);
