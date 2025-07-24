@@ -258,6 +258,26 @@ export default function Index() {
                 </CardContent>
               </Card>
 
+              {/* Status Box */}
+              <Card className="border-deepblue-200 bg-deepblue-50">
+                <CardContent className="p-4">
+                  <div className="text-center">
+                    <h4 className="font-semibold text-deepblue-800 mb-2">Status</h4>
+                    <div className="flex items-center justify-center gap-2">
+                      <div className={`w-3 h-3 rounded-full ${isTracking ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                      <span className="text-sm text-deepblue-700">
+                        {isTracking ? 'Camera Active - Tracking Emotions' : 'Camera Inactive'}
+                      </span>
+                    </div>
+                    {isTracking && (
+                      <p className="text-xs text-deepblue-600 mt-2">
+                        AI model analyzing facial expressions in real-time
+                      </p>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+
               {/* Current Emotion Display */}
               {currentEmotion && (
                 <Card className="border-deepblue-200 bg-white/80 backdrop-blur-sm">
