@@ -258,25 +258,30 @@ export default function Index() {
                 </CardContent>
               </Card>
 
-              {/* Status Box */}
-              <Card className="border-deepblue-200 bg-deepblue-50">
-                <CardContent className="p-4">
-                  <div className="text-center">
-                    <h4 className="font-semibold text-deepblue-800 mb-2">Status</h4>
-                    <div className="flex items-center justify-center gap-2">
-                      <div className={`w-3 h-3 rounded-full ${isTracking ? 'bg-green-500' : 'bg-gray-400'}`}></div>
-                      <span className="text-sm text-deepblue-700">
-                        {isTracking ? 'Camera Active - Tracking Emotions' : 'Camera Inactive'}
-                      </span>
+              {/* Video Output Box */}
+              {isTracking && (
+                <Card className="border-deepblue-200 bg-black">
+                  <CardContent className="p-4">
+                    <div className="aspect-video bg-black rounded-lg overflow-hidden relative">
+                      <video
+                        ref={videoRef}
+                        autoPlay
+                        playsInline
+                        muted
+                        className="w-full h-full object-cover"
+                      />
+                      <canvas
+                        ref={canvasRef}
+                        className="absolute inset-0"
+                        style={{ display: 'none' }}
+                      />
+                      <div className="absolute top-2 left-2 bg-black/50 text-white px-2 py-1 rounded text-xs">
+                        Live Feed
+                      </div>
                     </div>
-                    {isTracking && (
-                      <p className="text-xs text-deepblue-600 mt-2">
-                        AI model analyzing facial expressions in real-time
-                      </p>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              )}
 
               {/* Current Emotion Display */}
               {currentEmotion && (
