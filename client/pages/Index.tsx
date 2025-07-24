@@ -2,7 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Brain, Camera, Heart, Users, Activity, Zap, Eye, Target } from "lucide-react";
+import {
+  Brain,
+  Camera,
+  Heart,
+  Users,
+  Activity,
+  Zap,
+  Eye,
+  Target,
+} from "lucide-react";
 
 interface EmotionPrediction {
   emotion: string;
@@ -14,7 +23,8 @@ export default function Index() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isTracking, setIsTracking] = useState(false);
-  const [currentEmotion, setCurrentEmotion] = useState<EmotionPrediction | null>(null);
+  const [currentEmotion, setCurrentEmotion] =
+    useState<EmotionPrediction | null>(null);
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -47,7 +57,7 @@ export default function Index() {
   const startTracking = async () => {
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
-        video: { width: 640, height: 480 }
+        video: { width: 640, height: 480 },
       });
 
       setStream(mediaStream);
@@ -56,7 +66,8 @@ export default function Index() {
 
       // Simulate emotion detection
       intervalRef.current = setInterval(() => {
-        const randomEmotion = emotions[Math.floor(Math.random() * emotions.length)];
+        const randomEmotion =
+          emotions[Math.floor(Math.random() * emotions.length)];
         const confidence = Math.random() * 0.4 + 0.6; // 60-100% confidence
         setCurrentEmotion({
           emotion: randomEmotion.name,
@@ -73,7 +84,7 @@ export default function Index() {
   const stopTracking = () => {
     // Stop camera stream
     if (stream) {
-      stream.getTracks().forEach(track => track.stop());
+      stream.getTracks().forEach((track) => track.stop());
       setStream(null);
     }
 
@@ -101,18 +112,28 @@ export default function Index() {
               </h1>
             </div>
             <p className="text-xl sm:text-2xl text-deepblue-700 max-w-3xl mx-auto leading-relaxed">
-              Advanced emotion recognition technology powered by AI to understand and enhance human emotional intelligence
+              Advanced emotion recognition technology powered by AI to
+              understand and enhance human emotional intelligence
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <Badge variant="secondary" className="bg-emotion-joy/20 text-deepblue-800 px-4 py-2 text-lg">
+              <Badge
+                variant="secondary"
+                className="bg-emotion-joy/20 text-deepblue-800 px-4 py-2 text-lg"
+              >
                 <Heart className="w-4 h-4 mr-2" />
                 Empathy-Driven
               </Badge>
-              <Badge variant="secondary" className="bg-emotion-calm/20 text-deepblue-800 px-4 py-2 text-lg">
+              <Badge
+                variant="secondary"
+                className="bg-emotion-calm/20 text-deepblue-800 px-4 py-2 text-lg"
+              >
                 <Brain className="w-4 h-4 mr-2" />
                 AI-Powered
               </Badge>
-              <Badge variant="secondary" className="bg-emotion-focus/20 text-deepblue-800 px-4 py-2 text-lg">
+              <Badge
+                variant="secondary"
+                className="bg-emotion-focus/20 text-deepblue-800 px-4 py-2 text-lg"
+              >
                 <Eye className="w-4 h-4 mr-2" />
                 Real-Time
               </Badge>
@@ -130,57 +151,79 @@ export default function Index() {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-emotion-joy to-emotion-calm mx-auto mb-8"></div>
           </div>
-          
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="prose prose-lg text-deepblue-700 leading-relaxed">
                 <p className="text-lg">
-                  This novel implementation aims to address the lack of empathy and emotional awareness in everyday interactions. 
-                  When individuals struggle to recognize or understand others' emotions, it can contribute to feelings of isolation, 
-                  loneliness, or depression in those who go unnoticed or misunderstood.
+                  This novel implementation aims to address the lack of empathy
+                  and emotional awareness in everyday interactions. When
+                  individuals struggle to recognize or understand others'
+                  emotions, it can contribute to feelings of isolation,
+                  loneliness, or depression in those who go unnoticed or
+                  misunderstood.
                 </p>
                 <p className="text-lg">
-                  A potential remedy for this issue would be to utilize machine-learning-based emotion classifiers with CNN 
-                  architectures and fully connected layers to efficiently and effectively determine the emotional state of an 
-                  individual given a live feed from glasses.
+                  A potential remedy for this issue would be to utilize
+                  machine-learning-based emotion classifiers with CNN
+                  architectures and fully connected layers to efficiently and
+                  effectively determine the emotional state of an individual
+                  given a live feed from glasses.
                 </p>
                 <p className="text-lg">
-                  This could develop into more practical uses, such as in real-world hospitals for improved psychological 
-                  therapy diagnosis.
+                  This could develop into more practical uses, such as in
+                  real-world hospitals for improved psychological therapy
+                  diagnosis.
                 </p>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <Card className="p-6 border-deepblue-200 hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-0 text-center">
                   <Users className="w-12 h-12 text-emotion-calm mx-auto mb-4" />
-                  <h3 className="font-semibold text-deepblue-800 mb-2">Enhanced Empathy</h3>
-                  <p className="text-sm text-deepblue-600">Better understanding of emotional states</p>
+                  <h3 className="font-semibold text-deepblue-800 mb-2">
+                    Enhanced Empathy
+                  </h3>
+                  <p className="text-sm text-deepblue-600">
+                    Better understanding of emotional states
+                  </p>
                 </CardContent>
               </Card>
-              
+
               <Card className="p-6 border-deepblue-200 hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-0 text-center">
                   <Activity className="w-12 h-12 text-emotion-focus mx-auto mb-4" />
-                  <h3 className="font-semibold text-deepblue-800 mb-2">Real-time Analysis</h3>
-                  <p className="text-sm text-deepblue-600">Instant emotion recognition and feedback</p>
+                  <h3 className="font-semibold text-deepblue-800 mb-2">
+                    Real-time Analysis
+                  </h3>
+                  <p className="text-sm text-deepblue-600">
+                    Instant emotion recognition and feedback
+                  </p>
                 </CardContent>
               </Card>
-              
+
               <Card className="p-6 border-deepblue-200 hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-0 text-center">
                   <Target className="w-12 h-12 text-emotion-joy mx-auto mb-4" />
-                  <h3 className="font-semibold text-deepblue-800 mb-2">Clinical Applications</h3>
-                  <p className="text-sm text-deepblue-600">Therapeutic and diagnostic support</p>
+                  <h3 className="font-semibold text-deepblue-800 mb-2">
+                    Clinical Applications
+                  </h3>
+                  <p className="text-sm text-deepblue-600">
+                    Therapeutic and diagnostic support
+                  </p>
                 </CardContent>
               </Card>
-              
+
               <Card className="p-6 border-deepblue-200 hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-0 text-center">
                   <Zap className="w-12 h-12 text-emotion-energy mx-auto mb-4" />
-                  <h3 className="font-semibold text-deepblue-800 mb-2">CNN Architecture</h3>
-                  <p className="text-sm text-deepblue-600">Advanced machine learning algorithms</p>
+                  <h3 className="font-semibold text-deepblue-800 mb-2">
+                    CNN Architecture
+                  </h3>
+                  <p className="text-sm text-deepblue-600">
+                    Advanced machine learning algorithms
+                  </p>
                 </CardContent>
               </Card>
             </div>
@@ -196,7 +239,8 @@ export default function Index() {
               Live Emotion Tracking
             </h2>
             <p className="text-xl text-deepblue-700 max-w-3xl mx-auto">
-              Experience our AI-powered emotion recognition technology in real-time using your device's camera
+              Experience our AI-powered emotion recognition technology in
+              real-time using your device's camera
             </p>
           </div>
 
@@ -213,9 +257,8 @@ export default function Index() {
                           {hasPermission === false
                             ? "Camera access denied. Please allow camera permissions and refresh."
                             : isTracking
-                            ? "Video feed active - check below for live output"
-                            : "Click to start emotion tracking"
-                          }
+                              ? "Video feed active - check below for live output"
+                              : "Click to start emotion tracking"}
                         </p>
                         {!isTracking && hasPermission !== false && (
                           <Button
@@ -227,10 +270,7 @@ export default function Index() {
                           </Button>
                         )}
                         {isTracking && (
-                          <Button
-                            onClick={stopTracking}
-                            variant="destructive"
-                          >
+                          <Button onClick={stopTracking} variant="destructive">
                             Stop Tracking
                           </Button>
                         )}
@@ -255,7 +295,7 @@ export default function Index() {
                       <canvas
                         ref={canvasRef}
                         className="absolute inset-0"
-                        style={{ display: 'none' }}
+                        style={{ display: "none" }}
                       />
                       <div className="absolute top-2 left-2 bg-black/50 text-white px-2 py-1 rounded text-xs">
                         Live Feed
@@ -275,21 +315,25 @@ export default function Index() {
                           Detected Emotion
                         </h3>
                         <div className="flex items-center gap-3">
-                          <div className={`w-6 h-6 rounded-full ${currentEmotion.color}`}></div>
+                          <div
+                            className={`w-6 h-6 rounded-full ${currentEmotion.color}`}
+                          ></div>
                           <span className="text-xl font-semibold text-deepblue-700">
                             {currentEmotion.emotion}
                           </span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="text-sm text-deepblue-600 mb-1">Confidence</p>
+                        <p className="text-sm text-deepblue-600 mb-1">
+                          Confidence
+                        </p>
                         <p className="text-2xl font-bold text-deepblue-800">
                           {Math.round(currentEmotion.confidence * 100)}%
                         </p>
                       </div>
                     </div>
                     <div className="mt-4 bg-deepblue-100 rounded-full h-2 overflow-hidden">
-                      <div 
+                      <div
                         className="h-full bg-deepblue-600 transition-all duration-300 ease-out"
                         style={{ width: `${currentEmotion.confidence * 100}%` }}
                       ></div>
@@ -303,13 +347,22 @@ export default function Index() {
             <div className="space-y-6">
               <Card className="border-deepblue-200">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-deepblue-800 mb-6">Emotion Categories</h3>
+                  <h3 className="text-xl font-bold text-deepblue-800 mb-6">
+                    Emotion Categories
+                  </h3>
                   <div className="space-y-4">
                     {emotions.map((emotion) => (
-                      <div key={emotion.name} className="flex items-center gap-4 p-3 rounded-lg hover:bg-deepblue-50 transition-colors">
-                        <div className={`w-4 h-4 rounded-full ${emotion.color}`}></div>
+                      <div
+                        key={emotion.name}
+                        className="flex items-center gap-4 p-3 rounded-lg hover:bg-deepblue-50 transition-colors"
+                      >
+                        <div
+                          className={`w-4 h-4 rounded-full ${emotion.color}`}
+                        ></div>
                         <span className="text-2xl">{emotion.icon}</span>
-                        <span className="font-medium text-deepblue-800">{emotion.name}</span>
+                        <span className="font-medium text-deepblue-800">
+                          {emotion.name}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -318,23 +371,41 @@ export default function Index() {
 
               <Card className="border-deepblue-200 bg-gradient-to-br from-deepblue-50 to-white">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-deepblue-800 mb-4">How It Works</h3>
+                  <h3 className="text-xl font-bold text-deepblue-800 mb-4">
+                    How It Works
+                  </h3>
                   <div className="space-y-3 text-deepblue-700">
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-deepblue-600 text-white text-sm flex items-center justify-center font-bold mt-0.5">1</div>
-                      <p className="text-sm">Camera captures facial expressions in real-time</p>
+                      <div className="w-6 h-6 rounded-full bg-deepblue-600 text-white text-sm flex items-center justify-center font-bold mt-0.5">
+                        1
+                      </div>
+                      <p className="text-sm">
+                        Camera captures facial expressions in real-time
+                      </p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-deepblue-600 text-white text-sm flex items-center justify-center font-bold mt-0.5">2</div>
-                      <p className="text-sm">CNN processes facial features and micro-expressions</p>
+                      <div className="w-6 h-6 rounded-full bg-deepblue-600 text-white text-sm flex items-center justify-center font-bold mt-0.5">
+                        2
+                      </div>
+                      <p className="text-sm">
+                        CNN processes facial features and micro-expressions
+                      </p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-deepblue-600 text-white text-sm flex items-center justify-center font-bold mt-0.5">3</div>
-                      <p className="text-sm">AI model predicts emotional state with confidence score</p>
+                      <div className="w-6 h-6 rounded-full bg-deepblue-600 text-white text-sm flex items-center justify-center font-bold mt-0.5">
+                        3
+                      </div>
+                      <p className="text-sm">
+                        AI model predicts emotional state with confidence score
+                      </p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-deepblue-600 text-white text-sm flex items-center justify-center font-bold mt-0.5">4</div>
-                      <p className="text-sm">Results displayed instantly for immediate feedback</p>
+                      <div className="w-6 h-6 rounded-full bg-deepblue-600 text-white text-sm flex items-center justify-center font-bold mt-0.5">
+                        4
+                      </div>
+                      <p className="text-sm">
+                        Results displayed instantly for immediate feedback
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -351,20 +422,28 @@ export default function Index() {
             Ready to Transform Emotional Intelligence?
           </h2>
           <p className="text-xl text-deepblue-100 mb-8 max-w-3xl mx-auto">
-            Join us in revolutionizing how we understand and respond to human emotions. 
-            Together, we can build a more empathetic and emotionally aware world.
+            Join us in revolutionizing how we understand and respond to human
+            emotions. Together, we can build a more empathetic and emotionally
+            aware world.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-deepblue-700 hover:bg-deepblue-50 px-8 py-3 text-lg">
+            <Button
+              size="lg"
+              className="bg-white text-deepblue-700 hover:bg-deepblue-50 px-8 py-3 text-lg"
+            >
               <Brain className="w-5 h-5 mr-2" />
               Learn More
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-deepblue-700 px-8 py-3 text-lg">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-deepblue-700 px-8 py-3 text-lg"
+            >
               <Heart className="w-5 h-5 mr-2" />
               Get in Touch
             </Button>
           </div>
-          
+
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-white">95%</div>
