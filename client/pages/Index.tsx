@@ -208,52 +208,36 @@ export default function Index() {
               <Card className="overflow-hidden border-deepblue-200">
                 <CardContent className="p-6">
                   <div className="aspect-video bg-deepblue-900 rounded-lg overflow-hidden relative">
-                    {!isTracking ? (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center">
-                          <Camera className="w-16 h-16 text-deepblue-400 mx-auto mb-4" />
-                          <p className="text-deepblue-300 mb-4">
-                            {hasPermission === false 
-                              ? "Camera access denied. Please allow camera permissions and refresh." 
-                              : "Click to start emotion tracking"
-                            }
-                          </p>
-                          {hasPermission !== false && (
-                            <Button 
-                              onClick={startTracking}
-                              className="bg-deepblue-600 hover:bg-deepblue-700"
-                            >
-                              <Camera className="w-4 h-4 mr-2" />
-                              Start Tracking
-                            </Button>
-                          )}
-                        </div>
-                      </div>
-                    ) : (
-                      <>
-                        <video
-                          ref={videoRef}
-                          autoPlay
-                          playsInline
-                          muted
-                          className="w-full h-full object-cover"
-                        />
-                        <canvas
-                          ref={canvasRef}
-                          className="absolute inset-0"
-                          style={{ display: 'none' }}
-                        />
-                        <div className="absolute top-4 right-4">
-                          <Button 
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <Camera className="w-16 h-16 text-deepblue-400 mx-auto mb-4" />
+                        <p className="text-deepblue-300 mb-4">
+                          {hasPermission === false
+                            ? "Camera access denied. Please allow camera permissions and refresh."
+                            : isTracking
+                            ? "Video feed active - check below for live output"
+                            : "Click to start emotion tracking"
+                          }
+                        </p>
+                        {!isTracking && hasPermission !== false && (
+                          <Button
+                            onClick={startTracking}
+                            className="bg-deepblue-600 hover:bg-deepblue-700"
+                          >
+                            <Camera className="w-4 h-4 mr-2" />
+                            Start Tracking
+                          </Button>
+                        )}
+                        {isTracking && (
+                          <Button
                             onClick={stopTracking}
                             variant="destructive"
-                            size="sm"
                           >
-                            Stop
+                            Stop Tracking
                           </Button>
-                        </div>
-                      </>
-                    )}
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
