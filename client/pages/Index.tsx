@@ -28,6 +28,13 @@ export default function Index() {
     { name: "Fear", color: "bg-purple-400", icon: "😨" },
   ];
 
+  // Cleanup on component unmount
+  useEffect(() => {
+    return () => {
+      stopTracking();
+    };
+  }, []);
+
   const startTracking = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
