@@ -29,6 +29,14 @@ export default function Index() {
     { name: "Fear", color: "bg-purple-400", icon: "😨" },
   ];
 
+  // Set video source when stream is available
+  useEffect(() => {
+    if (videoRef.current && stream) {
+      videoRef.current.srcObject = stream;
+      videoRef.current.play().catch(console.error);
+    }
+  }, [stream]);
+
   // Cleanup on component unmount
   useEffect(() => {
     return () => {
