@@ -251,12 +251,6 @@ export default function Index() {
                         playsInline
                         muted
                         className="w-full h-full object-cover"
-                        onLoadedMetadata={() => {
-                          if (videoRef.current && stream) {
-                            videoRef.current.srcObject = stream;
-                            videoRef.current.play().catch(console.error);
-                          }
-                        }}
                       />
                       <canvas
                         ref={canvasRef}
