@@ -233,7 +233,7 @@ export default function Index() {
               </Card>
 
               {/* Video Output Box */}
-              {isTracking && (
+              {isTracking && stream && (
                 <Card className="border-deepblue-200 bg-black">
                   <CardContent className="p-4">
                     <div className="aspect-video bg-black rounded-lg overflow-hidden relative">
@@ -243,6 +243,12 @@ export default function Index() {
                         playsInline
                         muted
                         className="w-full h-full object-cover"
+                        onLoadedMetadata={() => {
+                          if (videoRef.current && stream) {
+                            videoRef.current.srcObject = stream;
+                            videoRef.current.play().catch(console.error);
+                          }
+                        }}
                       />
                       <canvas
                         ref={canvasRef}
